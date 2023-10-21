@@ -68,7 +68,7 @@ namespace Manually_Throwing
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             try
-            {
+            { //
                 _ProductName = Product_Name(txtProductName.Text);
                 _Category = cbCategory.Text;
                 _MfgDate = dtPickerMfgDate.Value.ToString("yyyy-MM-dd");
