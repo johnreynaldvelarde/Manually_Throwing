@@ -32,14 +32,14 @@ namespace Manually_Throwing
 
         public string Product_Name(string name)
         {
-            if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
-                throw new NumberFormatException("Number Format Exception");
+            if (!Regex.IsMatch(name, @"^[a-zA-Z ]+$"))
+                throw new StringFormatException("String Format Exception");
             return name;
         }
         public int Quantity(string qty)
         {
             if (!Regex.IsMatch(qty, @"^[0-9]"))
-                throw new StringFormatException("String Format Exception");
+                throw new NumberFormatException("Number Format Exception");
             return Convert.ToInt32(qty);
         }
 
@@ -68,7 +68,7 @@ namespace Manually_Throwing
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             try
-            { //
+            { 
                 _ProductName = Product_Name(txtProductName.Text);
                 _Category = cbCategory.Text;
                 _MfgDate = dtPickerMfgDate.Value.ToString("yyyy-MM-dd");
@@ -80,19 +80,20 @@ namespace Manually_Throwing
                 gridViewProductList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 gridViewProductList.DataSource = showProductList;
             }
-            catch (NumberFormatException ex)
-            {
-                MessageBox.Show(ex.Message, "Number Format Error");
-            }
             catch (StringFormatException ex)
             {
                 MessageBox.Show(ex.Message, "String Format Error");
+            }
+            catch (NumberFormatException ex)
+            {
+                MessageBox.Show(ex.Message, "Number Format Error");
             }
             catch (CurrencyFormatException ex)
             {
                 MessageBox.Show(ex.Message, "Currency Format Error");
             }
-           
+            
+
         }
 
         private void Inventory_Load(object sender, EventArgs e)
